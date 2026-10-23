@@ -78,6 +78,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <div className="stripe stripe-bottom" aria-hidden="true" />
       <Palette open={search} onClose={() => setSearch(false)} />
     </>
   );
