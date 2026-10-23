@@ -3,6 +3,7 @@ import Ocean from "../components/Ocean.jsx";
 import NewsCard from "../components/NewsCard.jsx";
 import { IconBox } from "../components/Icon.jsx";
 import { NEWS, OLD, PORTS, PORT_IDS } from "../data/content.js";
+import { asset } from "../asset.js";
 
 const EVENT_URL = OLD + "/noticias/2026/conferência-ambiente-proteção-e-segurança-do-risco-à-resiliência-28-e-29-de-outubro/";
 
@@ -11,14 +12,15 @@ export default function Home() {
     <div className="page">
       <div className="hero-wrap">
         <section className="hero">
-          <Ocean />
+          <span className="watermark" aria-hidden="true" style={{ "--mark": `url(${asset("brand/emblem.png")})` }} />
+          <Ocean glow={false} transparent />
           <div className="hero-inner">
-            <span className="kicker" style={{ color: "var(--cobalt)" }}>Administração dos Portos de Sines e do Algarve</span>
+            <span className="kicker">Administração dos Portos de Sines e do Algarve</span>
             <h1>A porta atlântica <span className="grad">do sul.</span></h1>
             <p className="lede">A APS administra os portos de Sines, de Faro e de Portimão, visando a sua exploração económica, conservação e desenvolvimento.</p>
             <div className="hero-actions">
-              <Link to="/portos" className="btn btn-light">Explorar os portos</Link>
-              <Link to="/sistemas" className="btn btn-ghost-deep">JUL · CUP · Express Gate</Link>
+              <Link to="/portos" className="btn btn-primary">Explorar os portos</Link>
+              <Link to="/sistemas" className="btn btn-ghost">JUL · CUP · Express Gate</Link>
             </div>
             <div className="hero-ports">
               {PORT_IDS.map(id => {
