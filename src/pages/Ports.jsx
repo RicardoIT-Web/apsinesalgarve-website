@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import PageHead from "../components/PageHead.jsx";
 import PortArt from "../components/PortArt.jsx";
+import { asset } from "../asset.js";
 import { OLD, PORTS, PORT_IDS } from "../data/content.js";
 
 export default function Ports() {
@@ -13,7 +14,7 @@ export default function Ports() {
             const p = PORTS[id];
             return (
               <Link key={id} to={"/portos/" + id} className={"tile tile-link " + (i === 0 ? "dark c-12" : "c-6")} style={{ minHeight: i === 0 ? "340px" : "300px" }}>
-                <span className="portlogo" style={{ alignSelf: "flex-start" }}><img src={`/brand/${id}.png`} alt="" /></span>
+                <span className="portlogo" style={{ alignSelf: "flex-start" }}><img src={asset(`brand/${id}.png`)} alt="" /></span>
                 <span className="mono muted">{p.coord}</span>
                 <h3 className="port-title">Porto de {p.name}</h3>
                 <p className="muted" style={{ maxWidth: "44ch" }}>{p.short}</p>

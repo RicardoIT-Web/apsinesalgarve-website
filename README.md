@@ -29,6 +29,17 @@ public/brand/       logo files
 Pages: `/`, `/aps`, `/aps/governo`, `/portos`, `/portos/sines|faro|portimao`, `/estatisticas`,
 `/sistemas`, `/noticias`, `/contactos`, `/contactos/visitas`, `/recrutamento`.
 
+## Deployment (GitHub Pages)
+
+`.github/workflows/deploy.yml` builds the site and publishes it to GitHub Pages on every push to
+`main` (it can also be run by hand from the Actions tab). One-time setup: in the repository go to
+**Settings → Pages** and set **Source** to **GitHub Actions**.
+
+The site is then served at `https://ricardoit-web.github.io/apsinesalgarve-website/`. The
+workflow reads the base path from Pages, so after adding a custom domain (e.g.
+`www.apsinesalgarve.pt`) in the same settings page the next deploy serves from `/` with no code
+change.
+
 ## Before going live
 
 - **Logo files.** `public/brand/*.png` were cut from a screenshot of the current site, so they are
@@ -38,8 +49,8 @@ Pages: `/`, `/aps`, `/aps/governo`, `/portos`, `/portos/sines|faro|portimao`, `/
   accepts a JSON `POST` (`email`, `destinatario`, `assunto`, `mensagem`, `consentimento`) and
   routes it to the chosen department. Without it the form only shows a preview.
 - **Routing on the host.** The site uses real URLs, so the host must serve `index.html` for
-  unknown paths. `public/_redirects` does this on Netlify and Cloudflare Pages; on other hosts
-  add the equivalent rewrite rule.
+  unknown paths. On GitHub Pages the workflow copies it to `404.html`; `public/_redirects` does
+  the same on Netlify and Cloudflare Pages.
 - **Photos.** The design has no photography yet; the port and news cards are ready to take
   images from the APS photo library.
 - Links to documents (reports, PDFs, governance pages) still point to the current site.

@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import Ocean from "../components/Ocean.jsx";
+import { asset } from "../asset.js";
 import { PORTS, PORT_IDS } from "../data/content.js";
 
 const HEADLINES = {
@@ -20,7 +21,7 @@ export default function PortPage() {
         <section className="port-hero">
           <div className="bgart"><Ocean glow={false} tint={p.tint} /></div>
           <div>
-            <span className="portlogo" style={{ marginBottom: "22px" }}><img src={`/brand/${id}.png`} alt={"Porto de " + p.name} /></span>
+            <span className="portlogo" style={{ marginBottom: "22px" }}><img src={asset(`brand/${id}.png`)} alt={"Porto de " + p.name} /></span>
             <span className="mono" style={{ display: "block", color: "var(--on-deep-muted)" }}>{p.coord} · {p.tag}</span>
             <h1>Porto de {p.name}</h1>
             <p className="lede">{p.lead}</p>
