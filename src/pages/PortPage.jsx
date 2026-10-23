@@ -4,7 +4,7 @@ import { asset } from "../asset.js";
 import { PORTS, PORT_IDS } from "../data/content.js";
 
 // Ports whose hero uses the light blue look with the faint emblem.
-const LIGHT = ["portimao", "faro"];
+const LIGHT = ["sines", "portimao", "faro"];
 
 const HEADLINES = {
   sines: "Escala global, porta de energia.",
