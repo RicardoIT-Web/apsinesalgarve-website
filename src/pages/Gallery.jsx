@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import PageHead from "../components/PageHead.jsx";
 import { asset } from "../asset.js";
-import { GALLERY, PORTS } from "../data/content.js";
-
-const FILTERS = [["todos", "Todos"], ...Object.entries(PORTS).map(([id, p]) => [id, p.name])];
+import { useContent, useLang } from "../i18n.jsx";
 
 export default function Gallery() {
+  const { GALLERY, PORTS } = useContent();
+  const { t } = useLang();
+  const FILTERS = [["todos", t("Todos", "All")], ...Object.entries(PORTS).map(([id, p]) => [id, p.name])];
   const [filter, setFilter] = useState("todos");
   const [open, setOpen] = useState(-1);
   const photos = GALLERY.filter(g => filter === "todos" || g.port === filter);
@@ -26,7 +27,7 @@ export default function Gallery() {
 
   return (
     <div className="page">
-      <PageHead crumbs={[["Galeria"]]} title="Galeria." lede="Imagens dos portos de Sines, Portimão e Faro.">
+      <PageHead crumbs={[[t("Galeria", "Gallery")]]} title={t("Galeria.", "Gallery.")} lede={t("Imagens dos portos de Sines, Portimão e Faro.", "Photos of the ports of Sines, Portimão and Faro.")}>
         <div className="seg" style={{ marginTop: "28px" }}>
           {FILTERS.map(([id, label]) => <button key={id} aria-pressed={filter === id} onClick={() => { setFilter(id); setOpen(-1); }}>{label}</button>)}
         </div>
@@ -35,14 +36,14 @@ export default function Gallery() {
         {photos.length ? (
           <div className="gallery">
             {photos.map((g, i) => (
-              <button key={g.file} className="shot" onClick={() => setOpen(i)} aria-label={"Ampliar: " + g.caption}>
+              <button key={g.file} className="shot" onClick={() => setOpen(i)} aria-label={t("Ampliar: ", "Enlarge: ") + g.caption}>
                 <img src={asset("gallery/" + g.file)} alt={g.caption} loading="lazy" />
                 <span>{g.caption}</span>
               </button>
             ))}
           </div>
         ) : (
-          <div className="tile empty"><span className="mono muted">Em breve</span><p className="muted">Ainda não há imagens nesta galeria.</p></div>
+          <div className="tile empty"><span className="mono muted">{t("Em breve", "Coming soon")}</span><p className="muted">{t("Ainda não há imagens nesta galeria.", "There are no photos in this gallery yet.")}</p></div>
         )}
       </div>
       {shown && (
@@ -51,10 +52,10 @@ export default function Gallery() {
             <img src={asset("gallery/" + shown.file)} alt={shown.caption} />
             <figcaption><span>{shown.caption}</span><span className="mono">{open + 1} / {photos.length}</span></figcaption>
           </figure>
-          <button className="lb-btn lb-close" onClick={() => setOpen(-1)} aria-label="Fechar">✕</button>
+          <button className="lb-btn lb-close" onClick={() => setOpen(-1)} aria-label={t("Fechar", "Close")}>✕</button>
           {photos.length > 1 && <>
-            <button className="lb-btn lb-prev" onClick={e => { e.stopPropagation(); step(-1); }} aria-label="Anterior">‹</button>
-            <button className="lb-btn lb-next" onClick={e => { e.stopPropagation(); step(1); }} aria-label="Seguinte">›</button>
+            <button className="lb-btn lb-prev" onClick={e => { e.stopPropagation(); step(-1); }} aria-label={t("Anterior", "Previous")}>‹</button>
+            <button className="lb-btn lb-next" onClick={e => { e.stopPropagation(); step(1); }} aria-label={t("Seguinte", "Next")}>›</button>
           </>}
         </div>
       )}

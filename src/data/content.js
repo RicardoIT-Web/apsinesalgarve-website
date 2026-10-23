@@ -51,14 +51,14 @@ export const PORTS = {
     specs: [["Cais", "330 m + Ro-Ro"], ["Terrapleno", "≈ 22.000 m²"], ["Navio até", "215 m"], ["Calado", "8 m"], ["Passageiros", "até 2.000"], ["Arqueação", "50.000 GT"]],
     points: ["Situado entre o Mediterrâneo e o Oceano Atlântico, tem uma localização estratégica para os navios de cruzeiro que navegam nestas rotas.", "Tem também capacidade para carga geral, com condicionantes de acessibilidade terrestre pela sua inserção na malha urbana.", "Restrito a cargas limpas compatíveis com as atividades marítimas de lazer.", "O Algarve é uma das zonas turísticas mais famosas do planeta, atraindo turistas de todo o mundo."],
     terminals: ["Cais de cruzeiros", "Cais Ro-Ro", "2 gruas"],
-    link: ["Página atual do porto", OLD + "/portos/"] },
+    link: null },
   faro: { name: "Faro", tint: [120, 172, 28], color: "var(--faro)", coord: "37°00′15″N 7°55′18″W", tag: "Carga regional", hue: ["#245E7A", "#061527"],
     lead: "O Porto de Faro apresenta-se com uma forte componente regional para o fomento da economia do Algarve.",
     short: "A escolha natural das empresas do Algarve para exportar.",
     specs: [["Cais", "200 m"], ["Terrapleno", "≈ 14.000 m²"], ["Navio até", "120 m"], ["Calado", "6,4 m"], ["Porte", "7.500 DWT"], ["Armazém", "1.000 m²"]],
     points: ["O cimento produzido na cimenteira da Cimpor, em Loulé, é a principal carga exportada, principalmente para a Argélia e para Cabo Verde.", "Movimenta também pedra, ferro e telha para Gibraltar, alfarroba para Inglaterra, sal de Olhão, sal-gema de Loulé e atum para o Japão.", "Equipado com 3 gruas, 2 empilhadores e 1 armazém de 1.000 m².", "Com uma forte importância regional, é a escolha natural das empresas localizadas no Algarve para exportar os seus produtos."],
     terminals: ["3 gruas", "2 empilhadores", "Armazém 1.000 m²"],
-    link: ["Página atual do porto", OLD + "/portos/"] }
+    link: null }
 };
 
 export const NEWS_RAW = [
@@ -115,6 +115,7 @@ export const NEWS_RAW = [
   ["19/2", "Sines e Portimão mais próximos dos Portos de Cabo Verde"],
   ["10/2", "Sines corrige fundos e aprimora condições de operacionalidade no Terminal XXI"]
 ];
+export const NEWS_CATS = ["Todas", "Sines", "Algarve", "Institucional", "Avisos"];
 export const MONTHS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 export const catOf = t => /^(Comunicado|Edital)/.test(t) ? "Avisos" : /Portimão|Faro|Algarve|Ferragudo/.test(t) ? "Algarve" : /Sines/.test(t) ? "Sines" : "Institucional";
 export const TOPIC = t => /hidrog|energ|subesta|elétric|descarbon/i.test(t) ? "Energia" : /Conferência|Congresso|Fórum|Week|Europe|Intermodal|Missão|AgroBras/i.test(t) ? "Eventos" : /dragag|obra|infraestrutur|requalifica|Terminal|fundos/i.test(t) ? "Obras" : null;

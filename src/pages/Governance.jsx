@@ -1,12 +1,15 @@
 import PageHead from "../components/PageHead.jsx";
-import { GOV_DOCS, OLD } from "../data/content.js";
+import { Link, useContent, useLang } from "../i18n.jsx";
 
 export default function Governance() {
+  const { GOV_DOCS } = useContent();
+  const { t } = useLang();
   return (
     <div className="page">
-      <PageHead crumbs={[["A APS", "/aps"], ["Governo da Sociedade"]]} title="Governo da Sociedade" lede="Estratégia, relatórios, ética e contratação pública: toda a informação de transparência da APS num só lugar." />
+      <PageHead crumbs={[[t("A APS", "About APS"), "/aps"], [t("Governo da Sociedade", "Corporate Governance")]]} title={t("Governo da Sociedade", "Corporate Governance")} lede={t("Estratégia, relatórios, ética e contratação pública: toda a informação de transparência da APS num só lugar.", "Strategy, reports, ethics and public procurement: all of APS's transparency information in one place.")} />
       <div className="wrap">
-        <div className="list">{GOV_DOCS.map(d => <a className="row" key={d} href={OLD + "/governo-da-sociedade/"}><div className="t">{d}</div><span className="r">Abrir →</span></a>)}</div>
+        {/* The documents still have to be added to this site; until then each row asks visitors to request it. */}
+        <div className="list">{GOV_DOCS.map(d => <Link className="row" key={d} to="/contactos#formulario"><div className="t">{d}</div><span className="r">{t("Pedir documento →", "Request document →")}</span></Link>)}</div>
       </div>
     </div>
   );
