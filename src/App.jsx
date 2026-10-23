@@ -11,6 +11,7 @@ import PortPage from "./pages/PortPage.jsx";
 import Stats from "./pages/Stats.jsx";
 import Systems from "./pages/Systems.jsx";
 import News from "./pages/News.jsx";
+import Gallery from "./pages/Gallery.jsx";
 import Contacts from "./pages/Contacts.jsx";
 import Visits from "./pages/Visits.jsx";
 import Careers from "./pages/Careers.jsx";
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/estatisticas" element={<Stats />} />
           <Route path="/sistemas" element={<Systems />} />
           <Route path="/noticias" element={<News />} />
+          <Route path="/galeria" element={<Gallery />} />
           <Route path="/contactos" element={<Contacts />} />
           <Route path="/contactos/visitas" element={<Visits />} />
           <Route path="/recrutamento" element={<Careers />} />

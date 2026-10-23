@@ -9,6 +9,7 @@ export const ROUTES = [
   { id: "estatisticas", path: "/estatisticas", label: "Estatísticas" },
   { id: "sistemas", path: "/sistemas", label: "Sistemas" },
   { id: "noticias", path: "/noticias", label: "Notícias" },
+  { id: "galeria", path: "/galeria", label: "Galeria" },
   { id: "contactos", path: "/contactos", label: "Contactos" }
 ];
 export const EXTRA = [
@@ -19,6 +20,10 @@ export const EXTRA = [
   { path: "/contactos/visitas", label: "Visitas" },
   { path: "/recrutamento", label: "Recrutamento" }
 ];
+
+// Photos for the Galeria page. Files live in public/gallery/.
+// { file: "sines-01.jpg", caption: "…", port: "sines" | "portimao" | "faro" | null }
+export const GALLERY = [];
 
 export const PORTS = {
   sines: { name: "Sines", tint: [243, 146, 0], color: "var(--sines)", coord: "37°57′07″N 8°52′35″W", tag: "Águas profundas", hue: ["#0B3B8C", "#061527"],
