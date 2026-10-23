@@ -23,7 +23,19 @@ export const EXTRA = [
 
 // Photos for the Galeria page. Files live in public/gallery/.
 // { file: "sines-01.jpg", caption: "…", port: "sines" | "portimao" | "faro" | null }
-export const GALLERY = [];
+export const GALLERY = [
+  { file: "sines-vista-aerea.jpg", caption: "Vista aérea do Porto e da cidade de Sines", port: "sines" },
+  { file: "sines-terminal-xxi.jpg", caption: "Porta-contentores no Terminal XXI, Sines", port: "sines" },
+  { file: "portimao-cruzeiros.jpg", caption: "Navios de cruzeiro no Porto de Portimão", port: "portimao" },
+  { file: "faro-cais.jpg", caption: "Cais comercial do Porto de Faro", port: "faro" },
+  { file: "sines-metaneiro.jpg", caption: "Navio metaneiro no Terminal de GNL, Sines", port: "sines" },
+  { file: "sines-terminal-xxi-ferrovia.jpg", caption: "Terminal XXI e ligação ferroviária, Sines", port: "sines" },
+  { file: "sines-multiusos.jpg", caption: "Pás eólicas no Terminal Multiusos, Sines", port: "sines" },
+  { file: "sines-petroleiro.jpg", caption: "Petroleiro no Terminal de Granéis Líquidos, Sines", port: "sines" },
+  { file: "sines-gnl-sede.jpg", caption: "Terminal de GNL e edifício-sede da APS, Sines", port: "sines" },
+  { file: "sines-zal.jpg", caption: "Zona de Atividades Logísticas de Sines", port: "sines" },
+  { file: "sines-sede.jpg", caption: "Edifício-sede da APS, visto de cima", port: "sines" }
+];
 
 export const PORTS = {
   sines: { name: "Sines", tint: [243, 146, 0], color: "var(--sines)", coord: "37°57′07″N 8°52′35″W", tag: "Águas profundas", hue: ["#0B3B8C", "#061527"],
