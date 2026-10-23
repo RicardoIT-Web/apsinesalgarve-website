@@ -3,6 +3,9 @@ import Ocean from "../components/Ocean.jsx";
 import { asset } from "../asset.js";
 import { PORTS, PORT_IDS } from "../data/content.js";
 
+// Ports whose hero uses the light blue look with the faint emblem.
+const LIGHT = ["portimao", "faro"];
+
 const HEADLINES = {
   sines: "Escala global, porta de energia.",
   portimao: "A porta de entrada do Algarve.",
@@ -13,13 +16,15 @@ export default function PortPage() {
   const { id } = useParams();
   const p = PORTS[id];
   if (!p) return <Navigate to="/portos" replace />;
+  const light = LIGHT.includes(id);
   const others = PORT_IDS.filter(x => x !== id);
   return (
     <div className="page">
       <div className="wrap" style={{ paddingTop: "28px" }}>
         <div className="crumbs"><Link to="/">Início</Link><span>/</span><Link to="/portos">Portos</Link><span>/</span><span>{p.name}</span></div>
-        <section className="port-hero">
-          <div className="bgart"><Ocean glow={false} tint={p.tint} /></div>
+        <section className={"port-hero" + (light ? " light" : "")}>
+          {light && <span className="watermark" aria-hidden="true" style={{ "--mark": `url(${asset("brand/emblem.png")})` }} />}
+          <div className="bgart"><Ocean glow={false} tint={p.tint} transparent={light} /></div>
           <div>
             <span className="portlogo" style={{ marginBottom: "22px" }}><img src={asset(`brand/${id}.png`)} alt={"Porto de " + p.name} /></span>
             <span className="mono" style={{ display: "block", color: "var(--on-deep-muted)" }}>{p.coord} · {p.tag}</span>
