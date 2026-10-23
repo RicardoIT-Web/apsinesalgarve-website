@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLang } from "../i18n.jsx";
 
 // Breadcrumbs, title and intro at the top of each inner page.
 // crumbs: [[label, path?], ...]
 export default function PageHead({ crumbs, title, lede, children }) {
+  const { t } = useLang();
   return (
     <div className="wrap phead">
       <div className="crumbs">
-        <Link to="/">Início</Link>
+        <Link to="/">{t("Início", "Home")}</Link>
         {crumbs.map(([label, to]) => (
           <span key={label} style={{ display: "contents" }}>
             <span>/</span>

@@ -13,21 +13,27 @@ npm install
 npm run dev       # local dev server at http://localhost:5173
 npm run build     # production build into dist/
 npm run preview   # serve the production build locally
+npm run preview:file   # whole site in one HTML file (preview/site.html) for sharing drafts
 ```
 
 ## Structure
 
 ```
 src/
-  data/content.js   all site text: ports, news, contacts, departments (from the current site)
+  data/content.js   all site text in Portuguese: ports, news, contacts, departments (from the current site)
+  data/content.en.js the same content in English
+  i18n.jsx          language from the URL (/ = PT, /en = EN), t(pt, en) and language-aware Link
   components/       navigation, footer, search (⌘K), logo, animated sea, contact form
   pages/            one file per page
   styles.css        design tokens (APS gold/orange palette, light and dark) and layout
 public/brand/       logo files
+public/gallery/     photos for the Galeria page
 ```
 
 Pages: `/`, `/aps`, `/aps/governo`, `/portos`, `/portos/sines|faro|portimao`, `/estatisticas`,
-`/sistemas`, `/noticias`, `/contactos`, `/contactos/visitas`, `/recrutamento`.
+`/sistemas`, `/noticias`, `/galeria`, `/contactos`, `/contactos/visitas`, `/recrutamento`. Every page
+also exists in English under `/en` (for example `/en/portos/sines`); the PT/EN button switches
+between the two versions of the same page.
 
 ## Deployment (GitHub Pages)
 

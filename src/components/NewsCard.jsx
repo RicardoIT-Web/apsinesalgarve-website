@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { THUMBS } from "../data/content.js";
+import { Link } from "../i18n.jsx";
 
 export default function NewsCard({ n }) {
   const [a, b] = THUMBS[n.i % THUMBS.length];

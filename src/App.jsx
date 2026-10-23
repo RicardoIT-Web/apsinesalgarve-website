@@ -16,21 +16,48 @@ import Contacts from "./pages/Contacts.jsx";
 import Visits from "./pages/Visits.jsx";
 import Careers from "./pages/Careers.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import { EXTRA, ROUTES } from "./data/content.js";
+import { useContent, useLang } from "./i18n.jsx";
 
-function useTitle(pathname) {
+function useTitle() {
+  const { ROUTES, EXTRA } = useContent();
+  const { lang, path } = useLang();
   useEffect(() => {
-    const page = [...ROUTES, ...EXTRA].find(r => r.path === pathname);
-    document.title = pathname === "/" || !page ? "Portos de Sines e do Algarve" : `${page.label} · APS`;
-  }, [pathname]);
+    const page = [...ROUTES, ...EXTRA].find(r => r.path === path);
+    document.title = path === "/" || !page ? (lang === "en" ? "Ports of Sines and the Algarve" : "Portos de Sines e do Algarve") : `${page.label} · APS`;
+    document.documentElement.lang = lang === "en" ? "en" : "pt-PT";
+  }, [path, lang]);
 }
+
+// Every page, mounted once at "/" (Portuguese) and once under "/en" (English).
+const PAGES = (
+  <>
+    <Route index element={<Home />} />
+    <Route path="aps" element={<About />} />
+    <Route path="aps/governo" element={<Governance />} />
+    <Route path="portos" element={<Ports />} />
+    <Route path="portos/:id" element={<PortPage />} />
+    <Route path="estatisticas" element={<Stats />} />
+    <Route path="sistemas" element={<Systems />} />
+    <Route path="noticias" element={<News />} />
+    <Route path="galeria" element={<Gallery />} />
+    <Route path="contactos" element={<Contacts />} />
+    <Route path="contactos/visitas" element={<Visits />} />
+    <Route path="recrutamento" element={<Careers />} />
+    <Route path="*" element={<NotFound />} />
+  </>
+);
 
 export default function App() {
   const [search, setSearch] = useState(false);
   const { pathname, hash } = useLocation();
-  useTitle(pathname);
+  useTitle();
 
-  useEffect(() => { if (!hash) window.scrollTo(0, 0); }, [pathname, hash]);
+  useEffect(() => {
+    if (!hash) { window.scrollTo(0, 0); return; }
+    // Links such as /aps#orgaos: scroll to the section once the page has rendered.
+    const id = setTimeout(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView(), 30);
+    return () => clearTimeout(id);
+  }, [pathname, hash]);
   useEffect(() => {
     const onKey = e => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setSearch(s => !s); }
@@ -46,19 +73,8 @@ export default function App() {
       <Nav onSearch={() => setSearch(true)} />
       <main key={pathname}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/aps" element={<About />} />
-          <Route path="/aps/governo" element={<Governance />} />
-          <Route path="/portos" element={<Ports />} />
-          <Route path="/portos/:id" element={<PortPage />} />
-          <Route path="/estatisticas" element={<Stats />} />
-          <Route path="/sistemas" element={<Systems />} />
-          <Route path="/noticias" element={<News />} />
-          <Route path="/galeria" element={<Gallery />} />
-          <Route path="/contactos" element={<Contacts />} />
-          <Route path="/contactos/visitas" element={<Visits />} />
-          <Route path="/recrutamento" element={<Careers />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/en">{PAGES}</Route>
+          <Route path="/">{PAGES}</Route>
         </Routes>
       </main>
       <Footer />
